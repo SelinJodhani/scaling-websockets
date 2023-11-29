@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  ws1:
+    image: wsapp
+    environment:
+      - APPID=1111
+    networks:
+      - backend
+
+  ws2:
+    image: wsapp
+    environment:
+      - APPID=2222
+    networks:
+      - backend
+
+  ws3:
+    image: wsapp
+    environment:
+      - APPID=3333
+    networks:
+      - backend
+
+  ws4:
+    image: wsapp
+    environment:
+      - APPID=4444
+    networks:
+      - backend
+
+  nginx:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - backend
+
+  rds:
+    image: redis
+    networks:
+      - backend
+
+networks:
+  backend:
